@@ -3,16 +3,11 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-
-import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.value;
-import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.openqa.selenium.Keys.ENTER;
+import static com.codeborne.selenide.Selectors.*;
 
 public class TextBoxTests {
 
@@ -40,15 +35,19 @@ public class TextBoxTests {
         //клик по радиобаттону
         //сохраню себе два спокоба клика по элементу
         $(byText("Male")).click();
-        $("label[for='gender-radio-2']").click();
+        $("[for='gender-radio-2']").click();
         $("#userNumber").setValue(userNumber);
         //клик по полю и следом клик по дню в календаре
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__day.react-datepicker__day--011").click();
+        $(".react-datepicker__month-select").click();
+        $(byText("April")).click();
+        $(".react-datepicker__year-select").click();
+        $(byText("1994")).click();
+        $(".react-datepicker__day.react-datepicker__day--022").click();
         $("#subjectsInput").setValue("Maths").pressEnter();
         $(byText("Reading")).click();
         $(byText("Music")).click();
-        $("input#uploadPicture").uploadFile(new File("src/test/resources/avatar.jpg"));
+        $("#uploadPicture").uploadFromClasspath("avatar.jpg");
         $("#currentAddress").setValue("Yaroslavskaya street");
         $("#react-select-3-input").setValue(state).pressEnter();
         $("#react-select-4-input").setValue(city).pressEnter();
@@ -64,9 +63,6 @@ public class TextBoxTests {
                         text(state),
                         text(city),
                         text("avatar.jpg"),
-                        text("11 March,2021"));
-
+                        text("22 April,1994"));
     }
-
-
 }
