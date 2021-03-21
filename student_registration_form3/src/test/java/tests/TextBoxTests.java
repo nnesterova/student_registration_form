@@ -39,10 +39,8 @@ public class TextBoxTests {
         $("#userNumber").setValue(userNumber);
         //клик по полю и следом клик по дню в календаре
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
-        $(byText("April")).click();
-        $(".react-datepicker__year-select").click();
-        $(byText("1994")).click();
+        $(".react-datepicker__year-select").selectOptionByValue("1994");
+        $(".react-datepicker__month-select").selectOptionByValue("3");
         $(".react-datepicker__day.react-datepicker__day--022").click();
         $("#subjectsInput").setValue("Maths").pressEnter();
         $(byText("Reading")).click();
@@ -54,7 +52,7 @@ public class TextBoxTests {
         $("#submit").click();
 
         $(".modal-content").shouldHave
-                (text(firstName),
+                        (text(firstName),
                         text(userNumber),
                         text(lastName),
                         text(subjectsInput),
